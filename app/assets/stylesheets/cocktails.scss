@@ -1,3 +1,38 @@
 // Place all the styles related to the cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.homepage {
+  background-image: url('https://images.unsplash.com/photo-1570869937455-a347fba0a41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'); 
+  background-size: cover;
+  height: 100vh;
+  overflow-x: scroll;
+}
+
+.homepage h1 {
+  color: #ffffff;
+  font-size: 56px;
+}
+
+.but {
+  margin: 10px auto;
+  width: max-content;
+}
+
+.homepage a {
+  color: #ffffff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    text-shadow: 1px 1px 2px pink;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.recipe-list {
+  list-style-type: none;
+}
