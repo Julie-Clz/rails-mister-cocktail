@@ -1,13 +1,18 @@
-<div class="container">
+<div class="container" id= "show-page">
   <h1><%= @cocktail.name.capitalize  %></h1>
   <br>
-  <% if @cocktail.photo.attached? %>
-    <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
+  
+  <div class="recipe-img">
+    <% if @cocktail.photo.attached? %>
+      <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  </div>
+  
+  
   <ul class="recipe-list">
     <% @cocktail.doses.each do |dose| %>
   <li><%= dose.description %> 
-      <%= dose.ingredient.name %>
+      <%= dose.ingredient.name.capitalize %>
       <%= link_to "🗑", dose_path(dose),
           method: :delete,
           data: { confirm: "Are you sure?" } %>
@@ -15,10 +20,14 @@
 <% end %>
   </ul>
   
-  <%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-gradient-blue"  %>
+  <div class="btn-dose">
+    <%= link_to "Add an ingredient 🍾", new_cocktail_dose_path(@cocktail), class: "btn btn-gradient-blue"  %>
+  </div>
+  
   
   <br>
-  <%= link_to "🔙", cocktails_path  %>
-  
+  <div class="back">
+    <%= link_to "🔙", cocktails_path  %>
+  </div>
 </div>
 
