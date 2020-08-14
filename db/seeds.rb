@@ -12,15 +12,16 @@
 # json = JSON.parse(response.read)
 # return json['found']
 # end
+require 'open-uri'
+require 'json'
+puts "Cleaning database..."
+Ingredient.destroy_all
+puts "Database cleared!"
 
-Ingredient.create(name: "lemon")
-Ingredient.create(name: "ice")
-Ingredient.create(name: "mint leaves")
-Ingredient.create(name: "rhum")
-Ingredient.create(name: "cucumber")
-Ingredient.create(name: "gin")
-Ingredient.create(name: "tonic")
-Ingredient.create(name: "vodka")
-Ingredient.create(name: "sparkling water")
-Ingredient.create(name: "pisco")
-Ingredient.create(name: "sugar")
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+ingredients_serialized = open(url).read
+ingredients = JSON.parse(ingredients_serialized)
+ingredients["drinks"].each do |ingredient|
+  Ingredient.create!(name: ingredient["strIngredient1"])
+end
+puts "Done!"
