@@ -1,29 +1,27 @@
 <div class="container" id= "show-page">
   <h1><%= @cocktail.name.capitalize  %></h1>
   <br>
+  <div class="recipe">
+    <div class="recipe-img">
+      <% if @cocktail.photo.attached? %>
+        <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+    </div>
   
-  <div class="recipe-img">
-    <% if @cocktail.photo.attached? %>
-      <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
-  </div>
-  
-  
-  <ul class="recipe-list">
-    <% @cocktail.doses.each do |dose| %>
-  <li><%= dose.description %> 
-      <%= dose.ingredient.name.capitalize %>
-      <%= link_to "🗑", dose_path(dose),
+    <ul class="recipe-list">
+      <% @cocktail.doses.each do |dose| %>
+        <li><%= dose.description %> 
+          <%= dose.ingredient.name.capitalize %>
+          <%= link_to "🗑", dose_path(dose),
           method: :delete,
           data: { confirm: "Are you sure?" } %>
-  </li>
-<% end %>
-  </ul>
-  
-  <div class="btn-dose">
-    <%= link_to "Add an ingredient 🍾", new_cocktail_dose_path(@cocktail), class: "btn btn-gradient-blue"  %>
+        </li>
+      <% end %>
+    </ul>
+     <div class="btn-dose">
+      <%= link_to "+", new_cocktail_dose_path(@cocktail), class: "btn btn-outline-primary btn-sm btn-add"  %>
+     </div>
   </div>
-  
   
   <br>
   <div class="back">
